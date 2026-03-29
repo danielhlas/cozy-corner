@@ -12,10 +12,10 @@ const josefin = Josefin_Sans({
 
 export const metadata = {
     title: {
-        template: "%s / The Wild Oasis",
-        default: "Welcome / The Wild Oasis",
+        template: "%s / Cozy Corner",
+        default: "Welcome / Cozy Corner",
     },
-    description: "nějaký text",
+    description: "Cozy Corner - reserve a cabin today!",
 };
 
 export default function RootLayout({ children }) {
