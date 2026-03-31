@@ -2,7 +2,7 @@ import { updateReservation } from "@/app/_lib/actions";
 import { getBooking, getCabin } from "@/app/_lib/data-service";
 import UpdateButton from "@/app/_components/UpdateButton";
 
-export default async function Page({ params }) {
+export default async function Page({ params }: { params: { id: string } }) {
 
     const reservationId = params.id;
     const { numGuests, observations, cabinId } = await getBooking(reservationId)

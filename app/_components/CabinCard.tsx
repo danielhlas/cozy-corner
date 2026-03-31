@@ -1,19 +1,22 @@
 import { UsersIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
 import Link from "next/link";
+import { Cabin } from "@/types/supabase";
 
 
-function CabinCard({ cabin }) {
-  const { id, name, maxCapacity, regularPrice, discount, image } = cabin;
+function CabinCard({ cabin }: { cabin: Cabin }) {
+  const { id, name, maxCapacity, regularPrice, discount = 0, image } = cabin;
   return (
     <div className="flex border-primary-800 border">
       <div className="relative flex-1">
-        <Image
-          src={image}
-          fill
-          alt={`Cabin ${name}`}
-          className="object-cover border-r border-primary-800"
-        />
+        {image ? (
+          <Image
+            src={image}
+            fill
+            alt={`Cabin ${name}`}
+            className="object-cover border-r border-primary-800"
+          />
+        ) : null}
       </div>
 
       <div className="grow">
@@ -30,10 +33,10 @@ function CabinCard({ cabin }) {
           </div>
 
           <p className="flex gap-3 justify-end items-baseline">
-            {discount > 0 ? (
+            {(discount ?? 0) > 0 ? (
               <>
                 <span className="text-3xl font-[350]">
-                  ${regularPrice - discount}
+                  {regularPrice ? regularPrice - (discount ?? 0) : "Price not available"}
                 </span>
                 <span className="line-through font-semibold text-primary-600">
                   ${regularPrice}

@@ -10,7 +10,7 @@ function Filter() {
     const router = useRouter();
     const pathname = usePathname();
 
-    function handleFilter(filter) {
+    function handleFilter(filter: string) {
         const params = new URLSearchParams(searchParams);
         params.set("capacity", filter);
         router.replace(`${pathname}?${params.toString()}`, { scroll: false });
@@ -38,8 +38,13 @@ export default Filter;
 
 
 
-
-function Button({ filterName, handleFilter, currentFilter, children }) {
+type ButtonProps = {
+    filterName: string;
+    handleFilter: (filter: string) => void;
+    currentFilter: string;
+    children: React.ReactNode;
+}
+function Button({ filterName, handleFilter, currentFilter, children }: ButtonProps) {
     return (
         <button className={`px-5 py-2 hover:bg-primary-700 cursor-pointer ${filterName === currentFilter ? "bg-primary-700 text-primary-50" : ""}`} onClick={() => handleFilter(filterName)}>
             {children}

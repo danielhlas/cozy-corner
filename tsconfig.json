@@ -1,6 +1,10 @@
 {
   "compilerOptions": {
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -18,9 +22,35 @@
       }
     ],
     "paths": {
-      "@/*": ["./*"]
+      "@/*": [
+        "./*"
+      ]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "app/_components/CabinList.js",
+    "app/_components/ReservationContext.js",
+    "app/_components/Filter.js",
+    "app/account/profile/page.js",
+    "app/_lib/data-service.js",
+    "app/_lib/supabase.js",
+    "app/account/profile/page.js",
+    "app/_components/SelectCountry.js",
+    "app/account/profile/page.js",
+    "app/account/reservations/page.js",
+    "app/hooks/useWindowWidth.js",
+    "app/account/reservations/page.js",
+    "app/account/page.js",
+    "app/_components/ReservationContext.js",
+    "app/_components/DeleteReservation.js",
+    "app/account/profile/page.js",
+    "app/error.js"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

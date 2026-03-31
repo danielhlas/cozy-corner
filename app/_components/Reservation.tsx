@@ -3,12 +3,13 @@ import ReservationForm from "./ReservationForm";
 import LoginMessage from "./LoginMessage";
 import { getSettings, getBookedDatesByCabinId } from "../_lib/data-service";
 import { auth } from "../_lib/auth";
+import { Cabin } from "@/types/supabase";
 
-async function Reservation({ cabin }) {
+async function Reservation({ cabin }: { cabin: Cabin }) {
     const session = await auth();
     const [settings, bookedDates] = await Promise.all([
         getSettings(),
-        getBookedDatesByCabinId(cabin.id),
+        getBookedDatesByCabinId(String(cabin.id)),
     ]);
 
     return (

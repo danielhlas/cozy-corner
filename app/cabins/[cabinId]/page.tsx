@@ -5,7 +5,7 @@ import Reservation from "@/app/_components/Reservation";
 import { Suspense } from "react";
 import Spinner from "@/app/_components/Spinner";
 
-export async function generateMetadata({ params }) {
+export async function generateMetadata({ params }: { params: { cabinId: string } }) {
     const { name } = await getCabin(params.cabinId);
     return { title: `Cabin ${name}` }
 }
@@ -16,8 +16,7 @@ export async function generateStaticParams() {
     return ids
 }
 
-
-export default async function Page({ params }) {
+export default async function Page({ params }: { params: { cabinId: string } }) {
     const cabin = await getCabin(params.cabinId);
     const { id, name, maxCapacity, regularPrice, discount, image, description } = cabin;
 
