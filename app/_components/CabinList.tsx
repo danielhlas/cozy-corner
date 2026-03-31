@@ -2,7 +2,7 @@ import CabinCard from "@/app/_components/CabinCard";
 import { getCabins } from "@/app/_lib/data-service";
 
 
-async function CabinList({ filter }) {
+async function CabinList({ filter }: { filter: string }) {
 
     const cabins = await getCabins();
     let filteredCabins;
@@ -16,7 +16,7 @@ async function CabinList({ filter }) {
             {cabins.length === 0 && <p>No cabins found</p>}
 
             <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 xl:gap-14">
-                {filteredCabins.map((cabin) => (
+                {filteredCabins?.map((cabin) => (
                     <CabinCard cabin={cabin} key={cabin.id} />))
                 }
             </div>

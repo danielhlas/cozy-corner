@@ -3,7 +3,7 @@ import { auth } from "../_lib/auth";
 
 
 export default async function Navigation() {
-	const session = await auth();;
+	const session = await auth();
 
 	return (
 		<nav className="z-10 text-xl">
@@ -25,7 +25,7 @@ export default async function Navigation() {
 					>
 						<div className="flex items-center gap-2">
 							<span>Account</span>
-							{session?.user.image && <img className="h-8 rounded-full" src={session?.user.image} alt={session?.user.name} referrerPolicy="no-referrer" />}
+							{session?.user?.image && <img className="h-8 rounded-full" src={session?.user?.image} alt={session?.user?.name ? session?.user?.name : ""} referrerPolicy="no-referrer" />}
 						</div>
 					</Link>
 				</li>
