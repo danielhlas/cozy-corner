@@ -57,7 +57,6 @@ export async function getGuest(email: string) {
     .eq('email', email)
     .single();
 
-  // No error here! We handle the possibility of no guest in the sign in callback
   return data;
 }
 
@@ -79,7 +78,7 @@ export async function getBooking(id: string) {
 export async function getBookings(guestId: string) {
   const { data, error, count } = await supabase
     .from('bookings')
-    // We need data on the cabins. But let's ONLY take the data that we actually need, in order to reduce downloaded data.
+    //  take ONLY data that we actually need, in order to reduce downloaded data. Result is called userBookings
     .select(
       'id, created_at, startDate, endDate, numNights, numGuests, totalPrice, guestId, cabinId, cabins(name, image)'
     )

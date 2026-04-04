@@ -5,29 +5,41 @@ import { DayPicker } from "react-day-picker";
 import "react-day-picker/dist/style.css";
 import { useReservation } from "./ReservationContext";
 import { useWindowWidth } from "../hooks/useWindowWidth";
+import { SettingsType, CabinType } from "@/types/supabase";
+import { SafeCabinType } from "../cabins/[cabinId]/page";
+import { DateRange } from "react-day-picker";
 
-function isAlreadyBooked(range, datesArr) {
+
+function isAlreadyBooked(range: DateRange | undefined, datesArr: Date[]) {
   return (
     range?.from &&
     range?.to &&
     datesArr.some((date) =>
-      isWithinInterval(date, { start: range.from, end: range.to })
+      isWithinInterval(date, { start: range.from!, end: range.to! })
     )
   );
 }
 
+type DateSelectorProps = {
+  settings: SettingsType,
+  bookedDates: Date[],
+  cabin: SafeCabinType,
+}
 
-function DateSelector({ settings, bookedDates, cabin }) {
+function DateSelector({ settings, bookedDates, cabin }: DateSelectorProps) {
   const width = useWindowWidth();
 
   const { range, setRange, resetRange } = useReservation();
-  const clearedRange = isAlreadyBooked(range, bookedDates) ? {} : range;
-  const regularPrice = cabin.regularPrice;
+  const clearedRange = isAlreadyBooked(range, bookedDates) ? undefined : range;
+  const regularPrice = cabin.regularPrice
   const discount = cabin.discount;
-  const numNights = differenceInDays(clearedRange?.to, clearedRange?.from);
-  const cabinPrice = regularPrice * (numNights - discount);
+  const numNights = clearedRange?.to && clearedRange?.from ? differenceInDays(clearedRange?.to, clearedRange?.from) : 0;
+  const totalPrice = (regularPrice - discount) * numNights
 
   const { minBookingLength, maxBookingLength } = settings;
+  if (minBookingLength === null || maxBookingLength === null) {
+    throw new Error("Settings not loaded");
+  }
 
   return (
     <div className="flex flex-col justify-between">
@@ -67,7 +79,7 @@ function DateSelector({ settings, bookedDates, cabin }) {
               </p>
               <p>
                 <span className="text-xl font-bold uppercase">Total</span>{" "}
-                <span className="text-xl font-semibold">${cabinPrice}</span>
+                <span className="text-xl font-semibold">${totalPrice}</span>
               </p>
             </>
           ) : null}

@@ -5,6 +5,7 @@ import { redirect } from "next/navigation";
 import { auth, signIn, signOut } from "./auth";
 import { getBookings } from "./data-service";
 import { supabase } from "./supabase";
+import { newReservationDataType } from "../_components/ReservationForm";
 
 
 export async function signInAction() {
@@ -15,12 +16,15 @@ export async function signOutAction() {
     await signOut({ redirectTo: "/" });
 }
 
-export async function updateGuest(formData) {
+
+export async function updateGuest(formData: FormData) {
     const session = await auth();
     if (!session) throw new Error("You must be logged in");
 
-    const nationalID = formData.get("nationalID");
-    const [nationality, countryFlag] = formData.get("nationality").split("%");
+    const nationalID = (formData.get("nationalID") as string) || ""
+    const nationalityWithFlag = (formData.get("nationality") as string) || ""
+
+    const [nationality, countryFlag] = nationalityWithFlag.split("%");
 
     if (!/^[a-zA-Z0-9]{6,12}$/.test(nationalID)) {
         throw new Error("Please provide a valid national ID");
@@ -30,7 +34,7 @@ export async function updateGuest(formData) {
     const { data, error } = await supabase
         .from('guests')
         .update(updateData)
-        .eq('id', session.user.guestId)
+        .eq('id', session?.user?.guestId)
 
     if (error) {
         throw new Error('Guest could not be updated');
@@ -39,11 +43,11 @@ export async function updateGuest(formData) {
     revalidatePath("/account/profile");
 }
 
-export async function deleteReservation(bookingId) {
+export async function deleteReservation(bookingId: number) {
     const session = await auth();
     if (!session) throw new Error("You must be logged in");
 
-    const userBookings = await getBookings(session.user.guestId)
+    const userBookings = await getBookings(session?.user?.guestId)
     const userBookingsIds = userBookings.map(booking => booking.id)
     if (!userBookingsIds.includes(bookingId)) {
         throw new Error("You are not authorized to delete this booking");
@@ -62,7 +66,7 @@ export async function deleteReservation(bookingId) {
 
 
 
-export async function updateReservation(formData) {
+export async function updateReservation(formData: FormData) {
     const session = await auth();
     if (!session) throw new Error("You must be logged in");
 
@@ -75,8 +79,11 @@ export async function updateReservation(formData) {
     }
     //Get and test form data
     const numGuests = Number(formData.get("numGuests"));
-    const observations = formData.get("observations");
-    if (!/^[a-zA-Z0-9\s, .]{0,800}$/.test(observations)) throw new Error("Please use only letters and numbers in your observations");
+    const observations = (formData.get("observations") as string) || ""
+
+    if (!/^[a-zA-Z0-9\s, .áčďéěíňóřšťúůýžÁČĎÉĚÍŇÓŘŠŤÚŮÝŽ]{0,800}$/.test(observations)) {
+        throw new Error("Please use only letters and numbers in your observations");
+    }
 
 
     //Update booking in Supabase
@@ -94,7 +101,8 @@ export async function updateReservation(formData) {
 }
 
 
-export async function createReservation(newReservationData, formData) {
+
+export async function createReservation(newReservationData: newReservationDataType, formData: FormData) {
     const session = await auth();
     if (!session) throw new Error("You must be logged in");
 

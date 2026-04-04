@@ -1,3 +1,4 @@
+
 import { auth } from "@/app/_lib/auth";
 
 export const metadata = {
@@ -5,8 +6,12 @@ export const metadata = {
 };
 
 export default async function Page() {
-    const { user } = await auth();
-    const firstName = user?.name.split(" ")[0];
+
+    const session = await auth();
+    if (!session) throw new Error("You must be logged in");
+    if (!session.user?.name) throw new Error("!session.user.name doesnt exist");
+    const firstName = session.user.name.split(" ")[0];
+
     return (
         <main>
             <h2 className="font-semibold text-2xl text-accent-400 mb-7">

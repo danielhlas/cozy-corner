@@ -4,6 +4,7 @@ import Image from "next/image";
 import Reservation from "@/app/_components/Reservation";
 import { Suspense } from "react";
 import Spinner from "@/app/_components/Spinner";
+import z from "zod";
 
 export async function generateMetadata({ params }: { params: { cabinId: string } }) {
     const { name } = await getCabin(params.cabinId);
@@ -16,9 +17,25 @@ export async function generateStaticParams() {
     return ids
 }
 
+const CabinSchema = z.object({
+    id: z.number(),
+    name: z.string(),
+    maxCapacity: z.number(),
+    regularPrice: z.number(),
+    discount: z.number(),
+    image: z.string(),
+    description: z.string(),
+});
+
+export type SafeCabinType = z.infer<typeof CabinSchema>;
+
 export default async function Page({ params }: { params: { cabinId: string } }) {
     const cabin = await getCabin(params.cabinId);
-    const { id, name, maxCapacity, regularPrice, discount, image, description } = cabin;
+
+    const safeCabin = CabinSchema.safeParse(cabin);
+    if (!safeCabin.success) throw new Error("Cabin not found");
+    const { id, name, maxCapacity, regularPrice, discount, image, description } = safeCabin.data;
+
 
     return (
         <div className="max-w-6xl mx-auto mt-8">
@@ -64,7 +81,7 @@ export default async function Page({ params }: { params: { cabinId: string } }) 
                     Reserve today. Pay on arrival.
                 </h2>
                 <Suspense fallback={<Spinner />}>
-                    <Reservation cabin={cabin} />
+                    <Reservation cabin={safeCabin.data} />
                 </Suspense>
             </div>
         </div>

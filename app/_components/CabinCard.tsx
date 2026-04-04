@@ -1,10 +1,10 @@
 import { UsersIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
 import Link from "next/link";
-import { Cabin } from "@/types/supabase";
+import { CabinType } from "@/types/supabase";
 
 
-function CabinCard({ cabin }: { cabin: Cabin }) {
+function CabinCard({ cabin }: { cabin: CabinType }) {
   const { id, name, maxCapacity, regularPrice, discount = 0, image } = cabin;
   return (
     <div className="flex border-primary-800 border">

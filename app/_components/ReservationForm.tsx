@@ -4,17 +4,75 @@ import { differenceInDays } from "date-fns";
 import { useReservation } from "./ReservationContext";
 import { createReservation } from "../_lib/actions";
 import { useFormStatus } from "react-dom";
+import { CabinType, Guest } from "@/types/supabase";
+import z from "zod";
+import { DateRange } from "react-day-picker";
 
-function ReservationForm({ cabin, user }) {
+export type newReservationDataType = {
+  startDate: Date,
+  endDate: Date,
+  numNights: number,
+  cabinPrice: number,
+  extrasPrice: number,
+  totalPrice: number,
+  status: string,
+  hasBreakfast: boolean,
+  isPaid: boolean,
+  cabinId: number,
+  guestId: number
+}
+
+type ReservationFormProps = {
+  cabin: CabinType,
+  user: {
+    name?: string | null;
+    image?: string | null;
+    guestId: number;
+  }
+}
+
+const CabinSchema = z.object({
+  id: z.number(),
+  description: z.string(),
+  discount: z.number(),
+  image: z.string(),
+  maxCapacity: z.number(),
+  name: z.string(),
+  regularPrice: z.number(),
+});
+
+
+const UserSchema = z.object({
+  guestId: z.number(),
+  image: z.string().nullable().optional(),
+  name: z.string().nullable().optional(),
+});
+
+function ReservationForm({ cabin, user }: ReservationFormProps) {
+  console.log("CABIN", cabin)
+  //test data from cabin
+  const resultCabin = CabinSchema.safeParse(cabin);
+  if (!resultCabin.success) {
+    return <p>Chyba při načítání dat chaty.</p>;
+  }
+  const { regularPrice, discount, maxCapacity, id: cabinId } = resultCabin.data;
+
+  //test data from user
+  const resultUser = UserSchema.safeParse(user);
+  if (!resultUser.success) {
+    return <p>Chyba při načítání dat uživatele.</p>;
+  }
+  const { guestId, image, name } = resultUser.data;
+
   const { range } = useReservation();
 
-
-  const numNights = differenceInDays(range?.to, range?.from);
-  const cabinPrice = numNights * (cabin.regularPrice - cabin.discount);
+  const numNights = range?.from && range?.to ? differenceInDays(range?.to, range?.from) : 0;
+  const cabinPrice = numNights * (regularPrice - discount);
   const extrasPrice = 0;
-  const newReservationData = {
-    startDate: range?.from,
-    endDate: range?.to,
+
+  const newReservationData: newReservationDataType = {
+    startDate: range?.from as Date,
+    endDate: range?.to as Date,
     numNights,
     cabinPrice,
     extrasPrice,
@@ -22,8 +80,8 @@ function ReservationForm({ cabin, user }) {
     status: "unconfirmed",
     hasBreakfast: false,
     isPaid: false,
-    cabinId: cabin.id,
-    guestId: user.guestId
+    cabinId,
+    guestId: guestId
   }
   const createReservationWithData = createReservation.bind(null, newReservationData)
 
@@ -37,10 +95,10 @@ function ReservationForm({ cabin, user }) {
             // Important to display google profile images
             referrerPolicy='no-referrer'
             className='h-8 rounded-full'
-            src={user.image}
-            alt={user.name}
+            src={image ?? undefined}
+            alt={name ?? ""}
           />
-          <p>{user.name}</p>
+          <p>{name || ""}</p>
         </div>
       </div>
 
@@ -56,7 +114,7 @@ function ReservationForm({ cabin, user }) {
             <option value='' key=''>
               Select number of guests...
             </option>
-            {Array.from({ length: cabin.maxCapacity }, (_, i) => i + 1).map((x) => (
+            {Array.from({ length: maxCapacity }, (_, i) => i + 1).map((x) => (
               <option value={x} key={x}>
                 {x} {x === 1 ? 'guest' : 'guests'}
               </option>
@@ -84,7 +142,9 @@ function ReservationForm({ cabin, user }) {
   );
 }
 
-function SubmitButton({ range }) {
+
+
+function SubmitButton({ range }: { range: DateRange | undefined }) {
   const { pending } = useFormStatus();
 
   return (

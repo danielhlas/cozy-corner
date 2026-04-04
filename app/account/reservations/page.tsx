@@ -1,6 +1,6 @@
 import { auth } from "@/app/_lib/auth";
 import { getBookings } from "@/app/_lib/data-service";
-import ReservationList from "@/app/_components/ReservationList";
+import ReservationList, { userBookings } from "@/app/_components/ReservationList";
 
 export const metadata = {
     title: "Reservations",
@@ -8,7 +8,7 @@ export const metadata = {
 
 export default async function Page() {
     const session = await auth();
-    const bookings = await getBookings(session?.user?.guestId)
+    const bookings = await getBookings(session?.user?.guestId) as any as userBookings[];
     return (
         <div>
             <h2 className="font-semibold text-2xl text-accent-400 mb-7">

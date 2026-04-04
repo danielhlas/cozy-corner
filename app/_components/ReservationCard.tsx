@@ -3,13 +3,21 @@ import { format, formatDistance, isPast, isToday, parseISO } from 'date-fns';
 import DeleteReservation from './DeleteReservation';
 import Link from 'next/link';
 import Image from 'next/image';
+import { userBookings } from './ReservationList';
 
-export const formatDistanceFromNow = (dateStr) =>
+export const formatDistanceFromNow = (dateStr: string) =>
   formatDistance(parseISO(dateStr), new Date(), {
     addSuffix: true,
   }).replace('about ', '');
 
-function ReservationCard({ booking, onDelete }) {
+type ReservationCardProps = {
+  booking: userBookings,
+  onDelete: (bookingId: number) => void
+}
+
+
+
+function ReservationCard({ booking, onDelete }: ReservationCardProps) {
   const {
     id,
     guestId,
@@ -18,10 +26,15 @@ function ReservationCard({ booking, onDelete }) {
     numNights,
     totalPrice,
     numGuests,
-    status,
     created_at,
     cabins: { name, image },
+
   } = booking;
+  //Converting string dates to Date type
+  if (!startDate || !endDate) throw new Error("Invalid startDate or endDate")
+  if (!numGuests) throw new Error("Invalid numGuests")
+  const startDateConverted = parseISO(startDate);
+  const endDateConverted = parseISO(endDate);
 
   return (
     <div className='flex border border-primary-800'>
@@ -39,7 +52,7 @@ function ReservationCard({ booking, onDelete }) {
           <h3 className='text-xl font-semibold'>
             {numNights} nights in Cabin {name}
           </h3>
-          {isPast(new Date(startDate)) ? (
+          {isPast(new Date(startDateConverted)) ? (
             <span className='bg-yellow-800 text-yellow-200 h-7 px-3 uppercase text-xs font-bold flex items-center rounded-xs'>
               past
             </span>
@@ -51,11 +64,11 @@ function ReservationCard({ booking, onDelete }) {
         </div>
 
         <p className='text-lg text-primary-300'>
-          {format(new Date(startDate), 'EEE, MMM dd yyyy')} (
-          {isToday(new Date(startDate))
+          {format(new Date(startDateConverted), 'EEE, MMM dd yyyy')} (
+          {isToday(new Date(startDateConverted))
             ? 'Today'
             : formatDistanceFromNow(startDate)}
-          ) &mdash; {format(new Date(endDate), 'EEE, MMM dd yyyy')}
+          ) &mdash; {format(new Date(endDateConverted), 'EEE, MMM dd yyyy')}
         </p>
 
         <div className='flex gap-5 mt-auto items-baseline'>

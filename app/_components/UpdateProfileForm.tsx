@@ -1,8 +1,12 @@
 "use client";
 import { useFormStatus } from "react-dom";
 import { updateGuest } from "../_lib/actions";
+import { Guest } from "@/types/supabase";
+import Image from "next/image";
 
-function UpdateProfileForm({ guest, children }) {
+function UpdateProfileForm({ guest, children }: { guest: Guest, children: React.ReactNode }) {
+
+
 
     const { fullName, email, nationality, nationalID, countryFlag } = guest;
 
@@ -11,7 +15,7 @@ function UpdateProfileForm({ guest, children }) {
             <div className="space-y-2">
                 <label>Full name</label>
                 <input
-                    defaultValue={fullName}
+                    defaultValue={fullName ? fullName : "Name not provided"}
                     name="fullName"
                     disabled
                     className="px-5 py-3 bg-primary-200 text-primary-800 w-full shadow-xs rounded-xs disabled:cursor-not-allowed disabled:bg-gray-600 disabled:text-gray-400"
@@ -21,7 +25,7 @@ function UpdateProfileForm({ guest, children }) {
             <div className="space-y-2">
                 <label>Email address</label>
                 <input
-                    defaultValue={email}
+                    defaultValue={email ? email : "Email not provided"}
                     name="email"
                     disabled
                     className="px-5 py-3 bg-primary-200 text-primary-800 w-full shadow-xs rounded-xs disabled:cursor-not-allowed disabled:bg-gray-600 disabled:text-gray-400"
@@ -31,9 +35,11 @@ function UpdateProfileForm({ guest, children }) {
             <div className="space-y-2">
                 <div className="flex items-center justify-between">
                     <label htmlFor="nationality">Where are you from?</label>
-                    <img
-                        src={countryFlag}
+                    <Image
+                        src={countryFlag ? countryFlag : "/img/flags/default.png"}
                         alt="Country flag"
+                        width={27}
+                        height={20}
                         className="h-5 rounded-xs"
                     />
                 </div>
@@ -46,7 +52,7 @@ function UpdateProfileForm({ guest, children }) {
             <div className="space-y-2">
                 <label htmlFor="nationalID">National ID number</label>
                 <input
-                    defaultValue={nationalID}
+                    defaultValue={nationalID ? nationalID : "National ID not provided"}
                     key={nationalID}
                     name="nationalID"
                     className="px-5 py-3 bg-primary-200 text-primary-800 w-full shadow-xs rounded-xs"
