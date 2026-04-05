@@ -60,8 +60,8 @@ export async function deleteReservation(bookingId: number) {
 
     if (error) throw new Error("Booking could not be deleted");
 
-    revalidatePath('/account/reservations');
-    redirect("/account/reservations");
+    revalidatePath('/account');
+    redirect("/account");
 }
 
 
@@ -96,8 +96,8 @@ export async function updateReservation(formData: FormData) {
 
     if (error) throw new Error('Booking could not be updated');
 
-    revalidatePath(`/account/reservations/edit/${reservationId}`);
-    redirect("/account/reservations");
+    revalidatePath(`/account/edit/${reservationId}`);
+    redirect("/account");
 }
 
 
@@ -118,5 +118,5 @@ export async function createReservation(newReservationData: newReservationDataTy
 
     if (error) { throw new Error('Booking could not be created'); }
     revalidatePath(`/cabins${newBooking.cabinId}`);
-    redirect("/account/reservations/thankyou");
+    redirect("/account/thankyou");
 }

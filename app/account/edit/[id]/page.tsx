@@ -1,6 +1,8 @@
 import { updateReservation } from "@/app/_lib/actions";
 import { getBooking, getCabin } from "@/app/_lib/data-service";
 import UpdateButton from "@/app/_components/UpdateButton";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default async function Page({ params }: { params: { id: string } }) {
 
@@ -10,9 +12,17 @@ export default async function Page({ params }: { params: { id: string } }) {
 
     return (
         <div>
-            <h2 className="font-semibold text-2xl text-accent-400 mb-7">
-                Edit Reservation #{reservationId}
-            </h2>
+            <div className="flex items-center justify-between mb-7">
+                <h2 className="font-semibold text-2xl text-accent-400">
+                    Edit Reservation #{reservationId}
+                </h2>
+                <Button className={"rounded-sm cursor-pointer"}>
+                    <Link href="/account" className="flex items-center gap-1 text-gray-300">
+                        <span><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#d1d5dc" viewBox="0 0 256 256"><path d="M165.66,202.34a8,8,0,0,1-11.32,11.32l-80-80a8,8,0,0,1,0-11.32l80-80a8,8,0,0,1,11.32,11.32L91.31,128Z"></path></svg></span>
+                        <span className="mt-1">Back</span>
+                    </Link>
+                </Button>
+            </div>
 
             <form action={updateReservation} className="bg-primary-900 py-8 px-12 text-lg flex gap-6 flex-col" >
 

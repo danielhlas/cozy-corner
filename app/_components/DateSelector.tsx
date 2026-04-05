@@ -54,7 +54,7 @@ function DateSelector({ settings, bookedDates, cabin }: DateSelectorProps) {
         fromMonth={new Date()}
         fromDate={new Date()}
         toYear={new Date().getFullYear() + 5}
-        numberOfMonths={width > 1024 && width < 1150 ? 1 : 2}
+        numberOfMonths={width < 700 || (width > 1024 && width < 1150) ? 1 : 2}
       />
 
       <div className="flex items-center justify-between px-8 bg-accent-500 text-primary-800 h-[72px]">

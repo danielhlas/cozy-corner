@@ -39,13 +39,13 @@ export default async function Page({ params }: { params: { cabinId: string } }) 
 
     return (
         <div className="max-w-6xl mx-auto mt-8">
-            <div className="grid grid-cols-[3fr_4fr] gap-20 border border-primary-800 py-3 px-10 mb-24">
-                <div className="relative scale-[1.15] -translate-x-3">
+            <div className="flex flex-col md:grid md:grid-cols-[3fr_4fr] gap-20 border border-primary-800 py-3 px-10 mb-24">
+                <div className="relative scale-[1.15] md:-translate-x-3 min-h-[35vh]">
                     <Image src={image} fill className="object-cover" alt={`Cabin ${name}`} />
                 </div>
 
                 <div>
-                    <h3 className="text-accent-100 font-black text-7xl mb-5 translate-x-[-254px] bg-primary-950 p-6 pb-1 w-[150%]">
+                    <h3 className="text-center text-accent-100 font-black text-4xl md:text-7xl mb-5 md:translate-x-[-254px] bg-primary-950 p-6 pb-1 md:w-[150%]">
                         Cabin {name}
                     </h3>
 
@@ -77,7 +77,7 @@ export default async function Page({ params }: { params: { cabinId: string } }) 
             </div>
 
             <div>
-                <h2 className="text-5xl pb-4 font-semibold text-center">
+                <h2 className="text-3xl md:text-5xl pb-4 font-semibold text-center">
                     Reserve today. Pay on arrival.
                 </h2>
                 <Suspense fallback={<Spinner />}>

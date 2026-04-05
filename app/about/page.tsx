@@ -13,12 +13,12 @@ export default async function Page() {
     const numOfCabins = cabins.length;
 
     return (
-        <div className="grid grid-cols-5 gap-x-24 gap-y-32 text-lg items-center">
-            <div className="col-span-3">
-                <h1 className="text-4xl mb-10 text-accent-400 font-medium">
-                    Welcome to Cozy Corner
-                </h1>
+        <>
+            <h1 className="text-4xl md:mt-0 mt-6 md:mb-10 mb-6 text-accent-400 font-medium">
+                Welcome to Cozy Corner
+            </h1>
 
+            <div className="flex flex-col md:flex-row mb-15 gap-10">
                 <div className="space-y-8">
                     <p>
                         Where nature&apos;s beauty and comfortable living blend seamlessly.
@@ -39,47 +39,57 @@ export default async function Page() {
                         being together in a beautiful setting.
                     </p>
                 </div>
-            </div>
 
-            <div className="col-span-2">
-                <Image src={about1} alt="Family sitting around a fire pit in front of cabin" />
-            </div>
-
-            <div className="col-span-2">
-                <Image src={about2} alt="Family that manages Cozy Corner" />
-            </div>
-
-            <div className="col-span-3">
-                <h1 className="text-4xl mb-10 text-accent-400 font-medium">
-                    Managed by our family since 1962
-                </h1>
-
-                <div className="space-y-8">
-                    <p>
-                        Since 2025, Cozy Corner has been a cherished family-run retreat.
-                        Started by our grandparents, this haven has been nurtured with love
-                        and care, passing down through our family as a testament to our
-                        dedication to creating a warm, welcoming environment.
-                    </p>
-                    <p>
-                        Over the years, we&apos;ve maintained the essence of Cozy Corner,
-                        blending the timeless beauty of the mountains with the personal
-                        touch only a family business can offer. Here, you&apos;re not just a
-                        guest; you&apos;re part of our extended family. So join us at Cozy Corner
-                        soon, where tradition meets tranquility, and every visit is
-                        like coming home.
-                    </p>
-
-                    <div>
-                        <a
-                            href="/cabins"
-                            className="inline-block mt-4 bg-accent-500 px-8 py-5 text-primary-800 text-lg font-semibold hover:bg-accent-600 transition-all"
-                        >
-                            Explore our luxury cabins
-                        </a>
-                    </div>
+                <div className="col-span-2">
+                    <Image src={about1} alt="Family sitting around a fire pit in front of cabin" />
                 </div>
             </div>
-        </div>
+
+
+            <div className="flex flex-col md:flex-row gap-10">
+
+                <div className="col-span-2 hidden md:block">
+                    <Image src={about2} alt="Family that manages Cozy Corner" />
+                </div>
+
+                <div className="col-span-3">
+                    <h1 className="text-4xl md:mb-10 mb-6 text-accent-400 font-medium">
+                        Managed by our family since 1962
+                    </h1>
+
+                    <div className="space-y-8">
+                        <p>
+                            Since 2025, Cozy Corner has been a cherished family-run retreat.
+                            Started by our grandparents, this haven has been nurtured with love
+                            and care, passing down through our family as a testament to our
+                            dedication to creating a warm, welcoming environment.
+                        </p>
+                        <p>
+                            Over the years, we&apos;ve maintained the essence of Cozy Corner,
+                            blending the timeless beauty of the mountains with the personal
+                            touch only a family business can offer. Here, you&apos;re not just a
+                            guest; you&apos;re part of our extended family. So join us at Cozy Corner
+                            soon, where tradition meets tranquility, and every visit is
+                            like coming home.
+                        </p>
+
+                        <div>
+
+                            <div className="col-span-2 block md:hidden">
+                                <Image src={about2} alt="Family that manages Cozy Corner" />
+                            </div>
+                        </div>
+                        <div className="flex justify-center md:justify-start">
+                            <a
+                                href="/cabins"
+                                className="inline-block mt-4 bg-accent-500 px-8 py-5 text-primary-800 text-lg font-semibold hover:bg-accent-600 transition-all"
+                            >
+                                Explore our luxury cabins
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div >
+        </>
     );
 }

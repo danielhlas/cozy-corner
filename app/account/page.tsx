@@ -1,22 +1,30 @@
-
 import { auth } from "@/app/_lib/auth";
+import { getBookings } from "@/app/_lib/data-service";
+import ReservationList, { userBookings } from "@/app/_components/ReservationList";
 
 export const metadata = {
-    title: "Account",
+    title: "Reservations",
 };
 
 export default async function Page() {
-
     const session = await auth();
-    if (!session) throw new Error("You must be logged in");
-    if (!session.user?.name) throw new Error("!session.user.name doesnt exist");
-    const firstName = session.user.name.split(" ")[0];
-
+    const bookings = await getBookings(session?.user?.guestId) as any as userBookings[];
     return (
-        <main>
+        <div>
             <h2 className="font-semibold text-2xl text-accent-400 mb-7">
-                Welcome {firstName}
+                Your reservations
             </h2>
-        </main>
+
+            {bookings.length === 0 ? (
+                <p className="text-lg">
+                    You have no reservations yet. Check out our{" "}
+                    <a className="underline text-accent-500" href="/cabins">
+                        luxury cabins &rarr;
+                    </a>
+                </p>
+            ) : (
+                <ReservationList bookings={bookings} />
+            )}
+        </div>
     );
 }
