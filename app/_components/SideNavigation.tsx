@@ -9,7 +9,7 @@ import SignOutButton from '@/app/_components/SignOutButton';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-const navLinks = [
+export const navLinks = [
   {
     name: 'Home',
     href: '/account',
