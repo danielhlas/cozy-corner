@@ -3,7 +3,9 @@ import Spinner from "@/app/_components/Spinner";
 
 function loading() {
     return (
-        <Spinner />
+        <div className="mt-20">
+            <Spinner />
+        </div>
     )
 }
 
