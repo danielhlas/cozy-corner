@@ -5,7 +5,7 @@ import bg from "@/public/bg.png"
 export default function Home() {
   return (
     <>
-      <Image src={bg} fill placeholder="blur" className="object-cover object-top fixed" alt="Mountains and forests with two cabins" />
+      <Image src={bg} fill placeholder="blur" className="object-cover object-top h-dvh" alt="Mountains and forests with two cabins" />
 
       <div className="relative z-1 text-center">
         <h1 className="text-base/19 text-step-7 text-primary-50 mb-10 tracking-tight font-normal pt-60 md:pt-36 ">
