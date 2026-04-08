@@ -1,10 +1,10 @@
 
 ## Next.js app Cozy Corner
-- Tailwind
-- Login through Auth (Google)
-- Data stored in Supabase
+- Styled with Tailwind V4
+- Login through Auth.js (Google)
+- Data stored in the Supabase
 - React Day Picker for date selection
 - Optimized with useOptimistic hook
-- Responsive design in progress...
+- Fully responsive design
 
 Live: https://yourcozycorner.vercel.app/

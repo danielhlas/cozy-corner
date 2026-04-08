@@ -57,37 +57,45 @@ function DateSelector({ settings, bookedDates, cabin }: DateSelectorProps) {
         numberOfMonths={width < 700 || (width > 1024 && width < 1150) ? 1 : 2}
       />
 
-      <div className="flex items-center justify-between px-8 bg-accent-500 text-primary-800 h-[72px]">
-        <div className="flex items-baseline gap-6">
-          <p className="flex gap-2 items-baseline">
+      <div className="flex items-center justify-between px-4 sm:px-8 bg-accent-500 text-primary-800 h-[72px]">
+
+        <div className="flex items-baseline gap-3 md:gap-5">
+          {/* price per night */}
+          <div>
             {discount > 0 ? (
-              <>
-                <span className="text-2xl">${regularPrice - discount}</span>
-                <span className="line-through font-semibold text-primary-700">
+              <div className="">
+                <span className="text-step-2">${regularPrice - discount}</span>
+                <span className="line-through font-semibold text-primary-700 ps-1">
                   ${regularPrice}
                 </span>
-              </>
+              </div>
             ) : (
-              <span className="text-2xl">${regularPrice}</span>
+              <span className="text-step-2">${regularPrice}</span>
             )}
-            <span className="">/night</span>
-          </p>
+            <span>/night</span>
+          </div>
+
           {numNights ? (
             <>
-              <p className="bg-accent-600 px-4 py-2 text-2xl">
-                <span>&times;</span> <span>{numNights}</span>
-              </p>
-              <p>
-                <span className="text-xl font-bold uppercase">Total</span>{" "}
-                <span className="text-xl font-semibold">${totalPrice}</span>
-              </p>
+              {/* num of nights */}
+              <div className="bg-accent-600 px-1 text-2xl flex ">
+                <span>&times;</span>
+                <span className="mt-1">{numNights}</span>
+              </div>
+
+              {/* total price */}
+              <div className="pe-3">
+                <span className="text-step-0 font-bold uppercase">Total</span>{" "}
+                <span className="text-step-1 font-semibold">${totalPrice}</span>
+              </div>
             </>
           ) : null}
         </div>
 
+        {/* clear button */}
         {range?.from || range?.to ? (
           <button
-            className="border border-primary-800 hover:bg-accent-600  py-2 px-4 text-sm font-semibold cursor-pointer"
+            className="border border-primary-800 hover:bg-accent-600 py-2 px-4 text-sm font-semibold cursor-pointer"
             onClick={resetRange}
           >
             Clear

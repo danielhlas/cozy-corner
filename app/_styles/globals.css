@@ -5,10 +5,6 @@
 @custom-variant hover (&:hover);
 
 /*
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 @layer components {
   .spinner {
     margin: 3.2rem auto 1.6rem;
@@ -46,11 +42,27 @@
 }
 
 @theme {
+
+  --breakpoint-xxs: 30rem;
+  --breakpoint-xs: 35rem;
+  --breakpoint-2xl: 100rem;
+  --breakpoint-3xl: 120rem;
+
+  /* Utopia Fluid Typography Utilities */
+  --text-step--2: var(--step--2);
+  --text-step--1: var(--step--1);
+  --text-step-0: var(--step-0);
+  --text-step-1: var(--step-1);
+  --text-step-2: var(--step-2);
+  --text-step-3: var(--step-3);
+  --text-step-4: var(--step-4);
+  --text-step-5: var(--step-5);
+  --text-step-6: var(--step-6);
+  --text-step-7: var(--step-7);
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-}
 
-@theme {
   /* Primary Colors */
   --color-primary-50: #e1e8ef;
   --color-primary-100: #d4dee7;
@@ -95,16 +107,20 @@
   ::file-selector-button {
     border-color: var(--color-gray-200, currentcolor);
   }
+
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
+
   html {
     @apply font-sans;
   }
 }
+
 /*
 ---break--- */
 @theme inline {
@@ -149,6 +165,7 @@
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
 }
+
 /*
 ---break--- */
 :root {
@@ -184,7 +201,30 @@
   --sidebar-ring: oklch(0.708 0 0);
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
+
+  /* @link https://utopia.fyi/type/calculator?c=360,16,1.2,1280,18,1.25,7,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
+  /* Step -2: 11.1111px → 11.52px */
+  --step--2: clamp(0.6944rem, 0.6844rem + 0.0444vw, 0.72rem);
+  /* Step -1: 13.3333px → 14.4px */
+  --step--1: clamp(0.8333rem, 0.8072rem + 0.1159vw, 0.9rem);
+  /* Step 0: 16px → 18px */
+  --step-0: clamp(1rem, 0.9511rem + 0.2174vw, 1.125rem);
+  /* Step 1: 19.2px → 22.5px */
+  --step-1: clamp(1.2rem, 1.1193rem + 0.3587vw, 1.4063rem);
+  /* Step 2: 23.04px → 28.125px */
+  --step-2: clamp(1.44rem, 1.3156rem + 0.5527vw, 1.7578rem);
+  /* Step 3: 27.648px → 35.1563px */
+  --step-3: clamp(1.728rem, 1.5444rem + 0.8161vw, 2.1973rem);
+  /* Step 4: 33.1776px → 43.9453px */
+  --step-4: clamp(2.0736rem, 1.8103rem + 1.1704vw, 2.7466rem);
+  /* Step 5: 39.8131px → 54.9316px */
+  --step-5: clamp(2.4883rem, 2.1186rem + 1.6433vw, 3.4332rem);
+  /* Step 6: 47.7757px → 68.6646px */
+  --step-6: clamp(2.986rem, 2.4751rem + 2.2705vw, 4.2915rem);
+  /* Step 7: 57.3309px → 85.8307px */
+  --step-7: clamp(3.5832rem, 2.8862rem + 3.0978vw, 5.3644rem);
 }
+
 /*
 ---break--- */
 .dark {

@@ -12,7 +12,7 @@ export default async function Page({ searchParams }: { searchParams: { capacity?
     const filterValue = searchParams?.capacity ?? "all";
 
     return (
-        <div>
+        <div className="pt-20 pb-16">
             <h1 className="text-4xl mb-5 text-accent-400 font-medium">
                 Our Luxury Cabins
             </h1>

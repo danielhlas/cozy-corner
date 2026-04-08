@@ -26,15 +26,15 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 
     return (
         <html lang="en" className={cn("font-sans", inter.variable)}>
-            <body className={`bg-primary-950 text-primary-100 min-h-screen ${josefin.className} grid grid-cols-[1rem_1fr] md:block`}>
+            <body className={`bg-primary-950 text-primary-100 min-h-screen ${josefin.className} block`}>
                 <div className="hidden md:block">
                     <Header />
                 </div>
-                <div className="block md:hidden relative z-10">
+                <div className="block md:hidden z-10 border-b-1 border-b-primary-900 h-13 w-full fixed top-0 bg-primary-950/98">
                     <SheetSide session={session} />
                 </div>
-                <div className="px-8 py-12">
-                    <main className="max-w-7xl mx-auto my-0">
+                <div className="px-4 xs:px-6 md:px-10">
+                    <main className="max-w-7xl mx-auto">
                         <ReservationProvider>
                             {children}
                         </ReservationProvider>

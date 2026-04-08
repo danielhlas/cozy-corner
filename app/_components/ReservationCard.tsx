@@ -16,7 +16,6 @@ type ReservationCardProps = {
 }
 
 
-
 function ReservationCard({ booking, onDelete }: ReservationCardProps) {
   const {
     id,

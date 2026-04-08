@@ -35,7 +35,7 @@ function CabinCard({ cabin }: { cabin: CabinType }) {
           <p className="flex gap-3 justify-end items-baseline">
             {(discount ?? 0) > 0 ? (
               <>
-                <span className="text-3xl font-[350]">
+                <span className="text-step-2 font-[350]">
                   {regularPrice ? regularPrice - (discount ?? 0) : "Price not available"}
                 </span>
                 <span className="line-through font-semibold text-primary-600">
@@ -43,9 +43,9 @@ function CabinCard({ cabin }: { cabin: CabinType }) {
                 </span>
               </>
             ) : (
-              <span className="text-3xl font-[350]">${regularPrice}</span>
+              <span className="text-step-2 font-[350]">${regularPrice}</span>
             )}
-            <span className="text-primary-200">/ night</span>
+            <span className="text-primary-200 ">/ night</span>
           </p>
         </div>
 

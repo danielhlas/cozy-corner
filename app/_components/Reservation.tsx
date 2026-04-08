@@ -13,16 +13,13 @@ async function Reservation({ cabin }: { cabin: SafeCabinType }) {
         getBookedDatesByCabinId(String(cabin.id)),
     ]);
 
-
-
     return (
         (session?.user ?
-            <div className="grid grid-col-1 lg:grid-cols-2 border border-primary-800 min-h-[400px]">
+            <div className="grid grid-col-1 lg:grid-cols-2 border border-primary-800 ">
                 <DateSelector settings={settings} bookedDates={bookedDates} cabin={cabin} />
                 <ReservationForm cabin={cabin} user={session.user} />
             </div>
             : <LoginMessage />)
-
     )
 }
 

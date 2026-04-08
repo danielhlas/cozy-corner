@@ -13,7 +13,8 @@ export default async function Page() {
     const numOfCabins = cabins.length;
 
     return (
-        <>
+
+        <div className="pt-20 pb-16 mb-10">
             <h1 className="text-4xl md:mt-0 mt-6 md:mb-10 mb-6 text-accent-400 font-medium">
                 Welcome to Cozy Corner
             </h1>
@@ -90,6 +91,6 @@ export default async function Page() {
                     </div>
                 </div>
             </div >
-        </>
+        </div>
     );
 }

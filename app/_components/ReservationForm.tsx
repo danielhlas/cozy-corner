@@ -86,8 +86,8 @@ function ReservationForm({ cabin, user }: ReservationFormProps) {
   const createReservationWithData = createReservation.bind(null, newReservationData)
 
   return (
-    <div className='scale-[1.01]'>
-      <div className='bg-primary-800 text-primary-300 px-16 flex justify-between items-center'>
+    <div className='bg-primary-900'>
+      <div className='bg-primary-800 text-primary-300 px-4 sm:px-16 flex justify-between items-center'>
         <p className="pt-4 pb-3">Logged in as</p>
 
         <div className='flex gap-3 items-center pt-4 pb-3'>
@@ -102,13 +102,13 @@ function ReservationForm({ cabin, user }: ReservationFormProps) {
         </div>
       </div>
 
-      <form action={createReservationWithData} className='bg-primary-900 py-10 px-16 text-lg flex gap-5 flex-col'>
+      <form action={createReservationWithData} className='bg-primary-900 py-10 px-2 sm:px-7 md:px-16 text-mdsm:text-lg flex gap-5 flex-col'>
         <div className='space-y-2'>
           <label htmlFor='numGuests'>How many guests?</label>
           <select
             name='numGuests'
             id='numGuests'
-            className='px-5 py-3 bg-primary-200 text-primary-800 w-full shadow-xs rounded-xs'
+            className='px-5 py-3 mt-1.5 bg-primary-200 text-primary-800 w-full shadow-xs rounded-xs'
             required
           >
             <option value='' key=''>
@@ -129,7 +129,7 @@ function ReservationForm({ cabin, user }: ReservationFormProps) {
           <textarea
             name='observations'
             id='observations'
-            className='px-5 py-3 bg-primary-200 text-primary-800 w-full shadow-xs rounded-xs'
+            className='mt-1.5 px-5 py-3 bg-primary-200 text-primary-800 w-full shadow-xs rounded-xs'
             placeholder='Any pets, allergies, special requirements, etc.?'
           />
         </div>

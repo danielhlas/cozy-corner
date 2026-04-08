@@ -11,9 +11,9 @@ export default async function Page({ params }: { params: { id: string } }) {
     const { maxCapacity } = await getCabin(cabinId)
 
     return (
-        <div>
-            <div className="flex items-center justify-between mb-7">
-                <h2 className="font-semibold text-2xl text-accent-400">
+        <div className="pt-22 md:pt-13 mb-10">
+            <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-7">
+                <h2 className="hidden md:block font-semibold text-2xl text-accent-400">
                     Edit Reservation #{reservationId}
                 </h2>
                 <Button className={"rounded-sm cursor-pointer"}>
@@ -22,9 +22,13 @@ export default async function Page({ params }: { params: { id: string } }) {
                         <span className="mt-1">Back</span>
                     </Link>
                 </Button>
+
+                <h2 className="md:hidden font-semibold text-2xl text-accent-400 mt-5">
+                    Edit Reservation #{reservationId}
+                </h2>
             </div>
 
-            <form action={updateReservation} className="bg-primary-900 py-8 px-12 text-lg flex gap-6 flex-col" >
+            <form action={updateReservation} className="bg-primary-900 py-8 px-4  sm:px-12 text-lg flex gap-6 flex-col" >
 
                 <input type="hidden" name="reservationId" value={reservationId} />
 
@@ -34,7 +38,7 @@ export default async function Page({ params }: { params: { id: string } }) {
                         defaultValue={numGuests}
                         name="numGuests"
                         id="numGuests"
-                        className="px-5 py-3 bg-primary-200 text-primary-800 w-full shadow-xs rounded-xs"
+                        className="px-5 py-3 mt-2 bg-primary-200 text-primary-800 w-full shadow-xs rounded-xs"
                         required
                     >
                         <option value="" key="">
@@ -55,7 +59,7 @@ export default async function Page({ params }: { params: { id: string } }) {
                     <textarea
                         name="observations"
                         defaultValue={observations}
-                        className="px-5 py-3 bg-primary-200 text-primary-800 w-full shadow-xs rounded-xs"
+                        className="px-5 py-3 mt-2 bg-primary-200 text-primary-800 w-full shadow-xs rounded-xs"
                     />
                 </div>
 
