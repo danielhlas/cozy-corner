@@ -38,7 +38,7 @@ export default async function Page({ params }: { params: { cabinId: string } }) 
 
 
     return (
-        <div className="max-w-6xl mx-auto mt-8">
+        <div className="pt-18 md:pt-20 pb-6 max-w-6xl mx-auto">
             <div className="flex flex-col md:grid md:grid-cols-[3fr_4fr] gap-2 xs:gap-8 md:gap-20 border border-primary-800 py-3 px-3 sm:px-7 md:px-10 mb-24">
                 <div className="relative md:scale-[1.15] md:-translate-x-3 min-h-[35vh]">
                     <Image src={image} fill className="object-cover" alt={`Cabin ${name}`} />

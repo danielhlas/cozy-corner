@@ -42,10 +42,10 @@ export function SheetSide({ session }: { session: any }) {
                 >
                     <div>
                         <SheetTitle className="mb-3 text-xl font-bold">Menu</SheetTitle>
-                        <ul className="flex flex-col gap-2 items-left">
+                        <ul className="flex flex-col gap-2 items-left text-lg">
                             <li>
                                 <SheetClose>
-                                    <Link href="/" className="hover:text-primary-300 text-[1.05rem]">
+                                    <Link href="/" className="hover:text-primary-300 ">
                                         Home
                                     </Link>
                                 </SheetClose>
@@ -53,21 +53,21 @@ export function SheetSide({ session }: { session: any }) {
 
                             <li>
                                 <SheetClose>
-                                    <Link href="/cabins" className="hover:text-primary-300 text-[1.05rem]">
+                                    <Link href="/cabins" className="hover:text-primary-300">
                                         Cabins
                                     </Link>
                                 </SheetClose>
                             </li>
                             <li>
                                 <SheetClose>
-                                    <Link href="/about" className="hover:text-primary-300 text-[1.05rem]">
+                                    <Link href="/about" className="hover:text-primary-300">
                                         About
                                     </Link>
                                 </SheetClose>
                             </li>
                             <li>
                                 <SheetClose>
-                                    <Link href="/account" className="hover:text-primary-300 text-[1.05rem]">
+                                    <Link href="/account" className="hover:text-primary-300">
                                         Account
                                     </Link>
                                 </SheetClose>
@@ -78,11 +78,11 @@ export function SheetSide({ session }: { session: any }) {
                             <>
                                 <SheetTitle className='mt-14 mb-3 text-xl font-bold'>Account Menu</SheetTitle>
                                 <div className="no-scrollbar overflow-y-auto">
-                                    <ul className='flex flex-col gap-2'>
+                                    <ul className='flex flex-col gap-2 text-lg'>
                                         {navLinks.map((link) => (
                                             <li key={link.name}>
                                                 <SheetClose>
-                                                    <Link href={link.href} className="hover:text-primary-300 text-[1.05rem]">
+                                                    <Link href={link.href} className="hover:text-primary-300">
                                                         {link.name}
                                                     </Link>
                                                 </SheetClose>
@@ -99,7 +99,7 @@ export function SheetSide({ session }: { session: any }) {
                             <SheetClose>
                                 <p>Logged as {session.user.name}</p>
                                 <form action={signOutAction}>
-                                    <button className='cursor-pointer mt-4 hover:text-primary-300 text-[1.05rem] text-left w-full'>
+                                    <button className='cursor-pointer mt-4 hover:text-primary-300 text-lg text-left w-full'>
                                         Sign out
                                     </button>
                                 </form>
@@ -111,6 +111,6 @@ export function SheetSide({ session }: { session: any }) {
 
                 </SheetContent>
             </Sheet>
-        </div>
+        </div >
     )
 }
