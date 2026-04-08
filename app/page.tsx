@@ -4,7 +4,8 @@ import bg from "@/public/bg.png"
 
 export default function Home() {
   return (
-    <>
+    <div className="relative h-dvh w-screen left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] overflow-hidden">
+
       <Image src={bg} fill placeholder="blur" className="object-cover object-top h-dvh" alt="Mountains and forests with two cabins" />
 
       <div className="relative z-1 text-center">
@@ -18,6 +19,6 @@ export default function Home() {
           Explore our cabins
         </Link>
       </div>
-    </>
+    </div>
   );
 }
