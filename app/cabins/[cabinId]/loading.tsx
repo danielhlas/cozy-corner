@@ -1,4 +1,3 @@
-import Shimmer from "@/app/skeletons/Shimmer";
 import SkeletonElement from "../../skeletons/Skeleton";
 
 function loading() {
