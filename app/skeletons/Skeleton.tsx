@@ -11,7 +11,7 @@ function Skeleton({ type }: { type: SkeletonType }) {
     const variantClasses = skeletonStyles[type];
 
     return (
-        <div className={`bg-gray-600 mt-[14px] rounded-full  ${variantClasses}`} />
+        <div className={`bg-gray-600 mt-4 rounded-full  ${variantClasses}`} />
     );
 }
 
