@@ -2,7 +2,7 @@
 ## Next.js app Cozy Corner
 - Styled with Tailwind V4
 - Fully responsive design
-- Skeletons as loading UI (eg http://localhost:3000/account/test)
+- Skeletons as loading UI (eg https://yourcozycorner.vercel.app/account/test)
 - Login through Auth.js (Google)
 - Data stored in the Supabase
 - React Day Picker for date selection
