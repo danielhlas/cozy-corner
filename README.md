@@ -6,5 +6,6 @@
 - React Day Picker for date selection
 - Optimized with useOptimistic hook
 - Fully responsive design
+- Skeleton loading for slowest pages
 
 Live: https://yourcozycorner.vercel.app/
