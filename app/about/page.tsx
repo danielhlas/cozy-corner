@@ -42,7 +42,7 @@ export default async function Page() {
                     </p>
                 </div>
 
-                <div className="col-span-2">
+                <div>
                     <Image src={about1} alt="Family sitting around a fire pit in front of cabin" />
                 </div>
             </div>
@@ -50,11 +50,11 @@ export default async function Page() {
 
             <div className="flex flex-col md:flex-row gap-10">
 
-                <div className="col-span-2 hidden md:block">
+                <div className="hidden md:block">
                     <Image src={about2} alt="Family that manages Cozy Corner" />
                 </div>
 
-                <div className="col-span-3">
+                <div>
                     <h1 className="text-4xl md:mb-10 mb-6 text-accent-400 font-medium">
                         Managed by our family since 1962
                     </h1>

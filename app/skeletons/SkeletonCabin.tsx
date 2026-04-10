@@ -2,8 +2,8 @@ import SkeletonElement from "./Skeleton";
 
 function SkeletonCabin() {
     return (
-        <div className="pt-18 md:pt-20 pb-6 max-w-6xl mx-auto animate-pulse">
-            <div className="flex flex-col md:grid md:grid-cols-[3fr_4fr] gap-2 xs:gap-8 md:gap-20 border border-primary-800 py-3 px-3 sm:px-7 md:px-10 mb-24">
+        <div className="relative pt-18 md:pt-20 pb-6 max-w-6xl mx-auto">
+            <div className="relative overflow-hidden flex flex-col md:grid md:grid-cols-[3fr_4fr] gap-2 xs:gap-8 md:gap-20 border border-primary-800 py-3 px-3 sm:px-7 md:px-10 mb-24">
                 {/* Image */}
                 <div className="relative md:scale-[1.15] md:-translate-x-3 min-h-[35vh]">
                     <div className="h-80 md:h-160 lg:h-130 bg-gray-600" />

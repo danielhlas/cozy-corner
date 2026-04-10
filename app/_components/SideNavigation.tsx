@@ -28,14 +28,14 @@ function SideNavigation() {
 
   return (
     <nav className='border-r border-primary-900'>
-      <ul className='flex flex-col gap-2 text-lg'>
+      <ul className='flex flex-col gap-2 text-lg items-start'>
         {navLinks.map((link) => (
           <li key={link.name}>
             <Link
-              className={`py-3 px-5 hover:bg-primary-900 hover:text-primary-100 transition-colors flex items-center gap-4 font-semibold text-primary-200 ${link.href === pathname ? "bg-primary-800" : ""}`}
+              className={`py-3 px-5 hover:bg-primary-900 hover:text-primary-100 transition-colors flex items-center gap-3 lg:gap-4 font-semibold text-primary-200 ${link.href === pathname ? "bg-primary-800" : ""}`}
               href={link.href}
             >
-              {link.icon}
+              <span className='mb-1'>{link.icon}</span>
               <span>{link.name}</span>
             </Link>
           </li>

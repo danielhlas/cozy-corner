@@ -1,3 +1,4 @@
+import Shimmer from "@/app/skeletons/Shimmer";
 import SkeletonElement from "../../skeletons/Skeleton";
 
 function loading() {
@@ -17,10 +18,6 @@ function loading() {
 
                     {/* Description */}
                     <p className="text-lg text-primary-300 mb-9">
-                        <SkeletonElement type="text" />
-                        <SkeletonElement type="text" />
-                        <SkeletonElement type="text" />
-                        <SkeletonElement type="text" />
                         <SkeletonElement type="text" />
                         <SkeletonElement type="text" />
                         <SkeletonElement type="text" />
