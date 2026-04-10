@@ -1,9 +1,15 @@
+
 import SkeletonElement from "./Skeleton";
 import SkeletonListOfCards from "./SkeletonListOfCards";
 
-const SkeletonIntroduction = () => {
+export const metadata = {
+    title: "Skeleton",
+}
+
+export default async function Page() {
     return (
-        <>
+        <div className="mt-20 animate-pulse">
+
             <div className="skeleton-wrapper">
                 <div className="skeleton-article">
                     <div className="w-1/2 h-7 mb-[15px] bg-gray-600 mt-2.5 rounded-sm" />
@@ -24,8 +30,7 @@ const SkeletonIntroduction = () => {
             </div>
 
             <SkeletonListOfCards />
-        </>
+        </div>
     );
-};
 
-export default SkeletonIntroduction;
+}
